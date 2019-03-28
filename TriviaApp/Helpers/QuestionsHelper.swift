@@ -23,17 +23,17 @@ class QuestionsHelper {
         switch id {
         case 1:
             let question1 = QuestionModel();
-            question1.qid = id;
-            question1.title = "Who is the best cricketer in the world?"
-            question1.options = ["Sachin Tendulkar", "Virat Kolli", "Adam Gilchirst", "Jacques Kallis"]
-            question1.isMultiSelect = false;
+//            question1.qid = id;
+//            question1.title = "Who is the best cricketer in the world?"
+//            question1.options = ["Sachin Tendulkar", "Virat Kolli", "Adam Gilchirst", "Jacques Kallis"]
+//            question1.isMultiSelect = false;
             return question1;
         case 2:
             let question2 = QuestionModel();
-            question2.qid = id;
-            question2.title = "What are the colors in the Indian national flag? Select all:"
-            question2.options = ["White", "Yellow", "Orange", "Green"]
-            question2.isMultiSelect = true;
+//            question2.qid = id;
+//            question2.title = "What are the colors in the Indian national flag? Select all:"
+//            question2.options = ["White", "Yellow", "Orange", "Green"]
+//            question2.isMultiSelect = true;
             return question2;
         default:
             return QuestionModel();

@@ -7,33 +7,35 @@
 //
 
 import Foundation
-//import RealmSwift
-//import Realm
+import FMDB
 class QuestionModel{
+    var id:Int32!;
+    var title:String!;
+    var options:[OptionModel] = [OptionModel]();
     
+    
+    init(result:FMResultSet) {
+        while result.next(){
+            if result.int(forColumn: "QID") != 0{
+                id = result.int(forColumn: "QID")
+            }
+            if result.string(forColumn: "QTITLE") != nil{
+                title = result.string(forColumn: "QTITLE")!;
+            }
+            self.options.append(OptionModel(result: result));
+        }
+        printMe();
+    }
+    
+    init() {
+        
+    }
+    
+    func printMe(){
+        print(id)
+        print(title)
+        print(options)
+    }
 }
 
-//@objc dynamic var qid:Int = 0;
-//@objc dynamic var title:String!;
-//@objc dynamic var options:[String]!;
-//@objc dynamic var selectedOption:String!;
-//@objc dynamic var isMultiSelect:Bool = false;
-//
-//init(title:String, options:[String], isMultiSelect:Bool) {
-//    super.init();
-//    self.title = title;
-//    self.options = options;
-//    self.isMultiSelect = isMultiSelect
-//}
-//
-//required init() {
-//    super.init()
-//}
-//
-//required init(realm: RLMRealm, schema: RLMObjectSchema) {
-//    super.init(realm: realm, schema: schema)
-//}
-//
-//required init(value: Any, schema: RLMSchema) {
-//    super.init(value: value, schema: schema)
-//}
+

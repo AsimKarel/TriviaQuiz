@@ -13,6 +13,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
+            self.performSegue(withIdentifier: "welcomeToMainSegue", sender: self)
+        })
+        
     }
 
 
