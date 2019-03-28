@@ -14,11 +14,12 @@ class MainScreenViewController: UIViewController {
     var player:PlayerModel!;
     override func viewDidLoad() {
         super.viewDidLoad()
-        player = PlayerModel();
+        
         // Do any additional setup after loading the view.
     }
     
     @IBAction func startNewGameTapped(_ sender: Any) {
+        player = PlayerModel();
         player.name = uNameTextField.text!;
         performSegue(withIdentifier: "newGameSegue", sender: self)
     }
@@ -34,6 +35,7 @@ class MainScreenViewController: UIViewController {
         }
     }
     
+    @IBAction func unwindToMainScreen(segue:UIStoryboardSegue) { }
     
     
 }

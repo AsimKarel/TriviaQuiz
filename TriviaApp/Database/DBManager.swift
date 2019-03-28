@@ -38,7 +38,7 @@ class DBManager: NSObject{
                 if database.open() {
                     let createQuestionsTableQuery = "CREATE TABLE Questions( id integer primary key autoincrement not null, title text not null)"
                     let createOptionsTableQuery = "CREATE TABLE Options( id integer primary key autoincrement not null, qId integer not null, title text not null)"
-                    let createAnswersTableQuery = "CREATE TABLE Answers( id integer primary key autoincrement not null, qId integer not null, aId integer not null, pId integer not null)"
+                    let createAnswersTableQuery = "CREATE TABLE Answers( id integer primary key autoincrement not null, qId integer not null, oId integer not null, pId integer not null)"
                     let createPlayersTableQuery = "CREATE TABLE Players( id integer primary key autoincrement not null, name text not null)"
                     
                     do {
@@ -136,18 +136,52 @@ class DBManager: NSObject{
         return QuestionModel()
     }
     
-    func getPlayer(id:Int) -> PlayerModel {
+    func savePlayer(player:PlayerModel) -> Int32 {
         if openDatabase() {
-            let query = ""
+            let query = "INSERT INTO Players(name) VALUES ('\(player.name!)')"
             do {
-                let result = try database.executeQuery(query, values: nil)
-                return PlayerModel(result: result);
+                try database.executeUpdate(query, values: nil)
+                return Int32(database!.lastInsertRowId);
             }
             catch {
                 print("Could not insert into tables.")
                 print(error.localizedDescription)
             }
         }
-        return PlayerModel()
+        return 0;
+    }
+    
+    func saveResult(option:OptionModel, player:Int32){
+        if openDatabase() {
+            let query = "INSERT INTO Answers(qId, oId, pId) VALUES \(option.qId!, option.id!, player)"
+            do {
+                try database.executeUpdate(query, values: nil)
+            }
+            catch {
+                print("Could not insert into tables.")
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    
+    func getHistory() {
+        if openDatabase() {
+            let query = "SELECT P.id PID, P.name PNAME, Q.id QID, Q.title QNAME, O.id OID, O.title ONAME from Players P left join Answers A on P.id = A.pId left join Options O on A.oId = O.id left join Questions Q on Q.id = O.qID"
+            do {
+                let result = try database.executeQuery(query, values: nil)
+                print(result)
+                
+                
+//                return QuestionModel(result: result);
+            }
+            catch {
+                print("Could not insert into tables.")
+                print(error.localizedDescription)
+            }
+        }
+        
+        
+//        print(query)
     }
 }

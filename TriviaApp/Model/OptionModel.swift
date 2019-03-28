@@ -11,6 +11,7 @@ import FMDB
 class OptionModel {
     var id:Int32!;
     var title:String!;
+    var qId:Int32!;
     
     init(result:FMResultSet) {
         if result.int(forColumn: "OID") != 0{
@@ -19,5 +20,9 @@ class OptionModel {
         if result.string(forColumn: "OTITLE") != nil{
             title = result.string(forColumn: "OTITLE")!;
         }
+    }
+    init(id:Int32, qId:Int32) {
+        self.id = id;
+        self.qId = qId;
     }
 }

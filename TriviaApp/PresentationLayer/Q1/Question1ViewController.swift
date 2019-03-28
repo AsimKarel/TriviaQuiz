@@ -37,4 +37,29 @@ class Question1ViewController: UIViewController,UITableViewDataSource, UITableVi
         return 50;
     }
     
+    @IBAction func nextTapped(_ sender: Any) {
+        DBManager.shared.getHistory();
+//       performSegue(withIdentifier: "Q1ToQ2Segue", sender: self)
+    }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        player.selectedOptions.append(OptionModel(id: player.questions[0].options[indexPath.row].id, qId: player.questions[0].id))
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        player.selectedOptions.removeAll(where: { (model) -> Bool in
+            return model.id == player.questions[0].options[indexPath.row].id && model.qId == player.questions[0].id
+        })
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "Q1ToQ2Segue"{
+            if let destination = segue.destination as? Question2ViewController{
+                destination.player = player;
+            }
+        }
+    }
+    
 }
