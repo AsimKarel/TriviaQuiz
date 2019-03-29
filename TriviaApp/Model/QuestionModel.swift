@@ -15,15 +15,13 @@ class QuestionModel{
     
     
     init(result:FMResultSet) {
-        while result.next(){
             if result.int(forColumn: "QID") != 0{
                 id = result.int(forColumn: "QID")
             }
             if result.string(forColumn: "QTITLE") != nil{
                 title = result.string(forColumn: "QTITLE")!;
             }
-            self.options.append(OptionModel(result: result));
-        }
+            
         printMe();
     }
     

@@ -11,8 +11,8 @@ import FMDB
 class PlayerModel{
     var id:Int32!;
     var name:String!;
-    var questions:[QuestionModel]!;
-    var selectedOptions:[OptionModel]!
+    var questions:[QuestionModel] = [QuestionModel]();
+    var selectedOptions:[OptionModel] = [OptionModel]();
     
     init() {
         selectedOptions = [OptionModel]();
@@ -23,20 +23,18 @@ class PlayerModel{
     
     init(result:FMResultSet) {
         questions = [QuestionModel]();
-        while result.next(){
-            if result.int(forColumn: "UID") != 0{
-                id = result.int(forColumn: "UID")
+            if result.int(forColumn: "PID") != 0{
+                id = result.int(forColumn: "PID")
             }
-            if result.string(forColumn: "UNAME") != nil{
-                name = result.string(forColumn: "UNAME")!;
+            if result.string(forColumn: "PNAME") != nil{
+                name = result.string(forColumn: "PNAME")!;
             }
-            if result.string(forColumn: "QID") != nil{
-                self.questions.append(QuestionModel(result: result));
-            }
-            if result.string(forColumn: "SOID") != nil{
-                self.selectedOptions.append(OptionModel(result: result));
-            }
-        }
+//            if result.string(forColumn: "QID") != nil{
+//                self.questions.append(QuestionModel(result: result));
+//            }
+//            if result.string(forColumn: "OID") != nil{
+//                self.selectedOptions.append(OptionModel(result: result));
+//            }
         
         
     }
