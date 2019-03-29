@@ -192,50 +192,108 @@ class DBManager: NSObject{
                             var questionsDict = dict!["QUESTIONS"] as? [NSMutableDictionary];
                             if questionsDict == nil{
                                 questionsDict = [NSMutableDictionary]();
-                                let question = NSMutableDictionary();
-                                question["QID"] = result.int(forColumn: "QID")
-                                question["QTITLE"] = result.string(forColumn: "QTITLE")!
-                                var optionsDict = question["OPTIONS"] as? [NSMutableDictionary];
-                                if optionsDict == nil{
-                                    optionsDict = [NSMutableDictionary]();
-                                    let option = NSMutableDictionary();
-                                    option["OID"] = result.int(forColumn: "OID")
-                                    option["OTITLE"] = result.string(forColumn: "OTITLE")!
-                                    optionsDict!.append(option)
-                                    question["OPTIONS"] = optionsDict;
+                                let qdict = dict![result.int(forColumn: "QID")]
+                                if qdict == nil{
+                                    dict![result.int(forColumn: "QID")] = NSMutableDictionary();
+                                    let question = NSMutableDictionary();
+                                    question["QID"] = result.int(forColumn: "QID")
+                                    question["QTITLE"] = result.string(forColumn: "QTITLE")!
+                                    var optionsDict = question["OPTIONS"] as? [NSMutableDictionary];
+                                    if optionsDict == nil{
+                                        optionsDict = [NSMutableDictionary]();
+                                        let option = NSMutableDictionary();
+                                        option["OID"] = result.int(forColumn: "OID")
+                                        option["OTITLE"] = result.string(forColumn: "OTITLE")!
+                                        optionsDict!.append(option)
+                                        question["OPTIONS"] = optionsDict;
+                                    }
+                                    else{
+                                        //                                    dict!["OPTIONS"] = [NSMutableDictionary]();
+                                        optionsDict = question["OPTIONS"] as? [NSMutableDictionary];
+                                        let option = NSMutableDictionary();
+                                        option["OID"] = result.int(forColumn: "OID")
+                                        option["OTITLE"] = result.string(forColumn: "OTITLE")!
+                                        optionsDict!.append(option)
+                                        question["OPTIONS"] = optionsDict;
+                                    }
+                                    questionsDict!.append(question)
                                 }
                                 else{
-//                                    dict!["OPTIONS"] = [NSMutableDictionary]();
-                                    let option = NSMutableDictionary();
-                                    option["OID"] = result.int(forColumn: "OID")
-                                    option["OTITLE"] = result.string(forColumn: "OTITLE")!
-                                    optionsDict!.append(option)
-                                    question["OPTIONS"] = optionsDict;
+                                    let question = NSMutableDictionary();
+                                    question["QID"] = result.int(forColumn: "QID")
+                                    question["QTITLE"] = result.string(forColumn: "QTITLE")!
+                                    var optionsDict = question["OPTIONS"] as? [NSMutableDictionary];
+                                    if optionsDict == nil{
+                                        optionsDict = [NSMutableDictionary]();
+                                        let option = NSMutableDictionary();
+                                        option["OID"] = result.int(forColumn: "OID")
+                                        option["OTITLE"] = result.string(forColumn: "OTITLE")!
+                                        optionsDict!.append(option)
+                                        question["OPTIONS"] = optionsDict;
+                                    }
+                                    else{
+                                        //                                    dict!["OPTIONS"] = [NSMutableDictionary]();
+                                        optionsDict = question["OPTIONS"] as? [NSMutableDictionary];
+                                        let option = NSMutableDictionary();
+                                        option["OID"] = result.int(forColumn: "OID")
+                                        option["OTITLE"] = result.string(forColumn: "OTITLE")!
+                                        optionsDict!.append(option)
+                                        question["OPTIONS"] = optionsDict;
+                                    }
+                                    questionsDict!.append(question)
                                 }
-                                questionsDict!.append(question)
-                                dict!["QUESTIONS"] = questionsDict;
+                                (dict![result.int(forColumn: "QID")] as! NSMutableDictionary)["QUESTIONS"] = questionsDict;
                             }
                             else{
-                                let question = NSMutableDictionary();
-                                question["QID"] = result.int(forColumn: "QID")
-                                question["QTITLE"] = result.string(forColumn: "QTITLE")!
-                                var optionsDict = question["OPTIONS"] as? [NSMutableDictionary];
-                                if optionsDict == nil{
-                                    optionsDict = [NSMutableDictionary]();
-                                    let option = NSMutableDictionary();
-                                    option["OID"] = result.int(forColumn: "OID")
-                                    option["OTITLE"] = result.string(forColumn: "OTITLE")!
-                                    optionsDict!.append(option)
+                                let qdict = dict![result.int(forColumn: "QID")]
+                                if qdict == nil{
+                                    dict![result.int(forColumn: "QID")] = NSMutableDictionary();
+                                    let question = NSMutableDictionary();
+                                    question["QID"] = result.int(forColumn: "QID")
+                                    question["QTITLE"] = result.string(forColumn: "QTITLE")!
+                                    var optionsDict = question["OPTIONS"] as? [NSMutableDictionary];
+                                    if optionsDict == nil{
+                                        optionsDict = [NSMutableDictionary]();
+                                        let option = NSMutableDictionary();
+                                        option["OID"] = result.int(forColumn: "OID")
+                                        option["OTITLE"] = result.string(forColumn: "OTITLE")!
+                                        optionsDict!.append(option)
+                                        question["OPTIONS"] = optionsDict;
+                                    }
+                                    else{
+                                        //                                    dict!["OPTIONS"] = [NSMutableDictionary]();
+                                        optionsDict = question["OPTIONS"] as? [NSMutableDictionary];
+                                        let option = NSMutableDictionary();
+                                        option["OID"] = result.int(forColumn: "OID")
+                                        option["OTITLE"] = result.string(forColumn: "OTITLE")!
+                                        optionsDict!.append(option)
+                                        question["OPTIONS"] = optionsDict;
+                                    }
+                                    questionsDict!.append(question)
                                 }
                                 else{
-//                                    dict!["OPTIONS"] = [NSMutableDictionary]();
-                                    let option = NSMutableDictionary();
-                                    option["OID"] = result.int(forColumn: "OID")
-                                    option["OTITLE"] = result.string(forColumn: "OTITLE")!
-                                    optionsDict!.append(option)
+                                    let question = dict![result.int(forColumn: "QID")] as! NSMutableDictionary;
+                                    var optionsDict = question["OPTIONS"] as? [NSMutableDictionary];
+                                    if optionsDict == nil{
+                                        optionsDict = [NSMutableDictionary]();
+                                        let option = NSMutableDictionary();
+                                        option["OID"] = result.int(forColumn: "OID")
+                                        option["OTITLE"] = result.string(forColumn: "OTITLE")!
+                                        optionsDict!.append(option)
+                                        question["OPTIONS"] = optionsDict;
+                                    }
+                                    else{
+                                        //                                    dict!["OPTIONS"] = [NSMutableDictionary]();
+                                        optionsDict = question["OPTIONS"] as? [NSMutableDictionary];
+                                        let option = NSMutableDictionary();
+                                        option["OID"] = result.int(forColumn: "OID")
+                                        option["OTITLE"] = result.string(forColumn: "OTITLE")!
+                                        optionsDict!.append(option)
+                                        question["OPTIONS"] = optionsDict;
+                                    }
+                                    questionsDict!.append(question)
                                 }
-                                questionsDict!.append(question)
-                                dict!["QUESTIONS"] = questionsDict;
+                                (dict![result.int(forColumn: "QID")] as! NSMutableDictionary)["QUESTIONS"] = questionsDict;
                             }
                         masterDict[result.int(forColumn: "PID")] = dict;
                     }
@@ -247,76 +305,117 @@ class DBManager: NSObject{
                         var questionsDict = dict!["QUESTIONS"] as? [NSMutableDictionary];
                         if questionsDict == nil{
                             questionsDict = [NSMutableDictionary]();
-                            let question = NSMutableDictionary();
-                            question["QID"] = result.int(forColumn: "QID")
-                            question["QTITLE"] = result.string(forColumn: "QTITLE")!
-                            var optionsDict = question["OPTIONS"] as? [NSMutableDictionary];
-                            if optionsDict == nil{
-                                optionsDict = [NSMutableDictionary]();
-                                let option = NSMutableDictionary();
-                                option["OID"] = result.int(forColumn: "OID")
-                                option["OTITLE"] = result.string(forColumn: "OTITLE")!
-                                optionsDict!.append(question)
-                                question["OPTIONS"] = optionsDict;
+                            let qdict = dict![result.int(forColumn: "QID")]
+                            if qdict == nil{
+                                dict![result.int(forColumn: "QID")] = NSMutableDictionary();
+                                let question = NSMutableDictionary();
+                                question["QID"] = result.int(forColumn: "QID")
+                                question["QTITLE"] = result.string(forColumn: "QTITLE")!
+                                var optionsDict = question["OPTIONS"] as? [NSMutableDictionary];
+                                if optionsDict == nil{
+                                    optionsDict = [NSMutableDictionary]();
+                                    let option = NSMutableDictionary();
+                                    option["OID"] = result.int(forColumn: "OID")
+                                    option["OTITLE"] = result.string(forColumn: "OTITLE")!
+                                    optionsDict!.append(option)
+                                    question["OPTIONS"] = optionsDict;
+                                }
+                                else{
+                                    //                                    dict!["OPTIONS"] = [NSMutableDictionary]();
+                                    optionsDict = question["OPTIONS"] as? [NSMutableDictionary];
+                                    let option = NSMutableDictionary();
+                                    option["OID"] = result.int(forColumn: "OID")
+                                    option["OTITLE"] = result.string(forColumn: "OTITLE")!
+                                    optionsDict!.append(option)
+                                    question["OPTIONS"] = optionsDict;
+                                }
+                                questionsDict!.append(question)
                             }
                             else{
-//                                dict!["OPTIONS"] = [NSMutableDictionary]();
-                                let option = NSMutableDictionary();
-                                option["OID"] = result.int(forColumn: "OID")
-                                option["OTITLE"] = result.string(forColumn: "OTITLE")!
-                                optionsDict!.append(question)
-                                question["OPTIONS"] = optionsDict;
+                                let question = dict![result.int(forColumn: "QID")] as! NSMutableDictionary;
+                                var optionsDict = question["OPTIONS"] as? [NSMutableDictionary];
+                                if optionsDict == nil{
+                                    optionsDict = [NSMutableDictionary]();
+                                    let option = NSMutableDictionary();
+                                    option["OID"] = result.int(forColumn: "OID")
+                                    option["OTITLE"] = result.string(forColumn: "OTITLE")!
+                                    optionsDict!.append(option)
+                                    question["OPTIONS"] = optionsDict;
+                                }
+                                else{
+                                    //                                    dict!["OPTIONS"] = [NSMutableDictionary]();
+                                    optionsDict = question["OPTIONS"] as? [NSMutableDictionary];
+                                    let option = NSMutableDictionary();
+                                    option["OID"] = result.int(forColumn: "OID")
+                                    option["OTITLE"] = result.string(forColumn: "OTITLE")!
+                                    optionsDict!.append(option)
+                                    question["OPTIONS"] = optionsDict;
+                                }
+                                questionsDict!.append(question)
                             }
-                            questionsDict!.append(question)
-                            dict!["QUESTIONS"] = questionsDict;
+                            (dict![result.int(forColumn: "QID")] as! NSMutableDictionary)["QUESTIONS"] = questionsDict;
                         }
                         else{
-                            let question = NSMutableDictionary();
-                            question["QID"] = result.int(forColumn: "QID")
-                            question["QTITLE"] = result.string(forColumn: "QTITLE")!
-                            var optionsDict = question["OPTIONS"] as? [NSMutableDictionary];
-                            if optionsDict == nil{
-                                optionsDict = [NSMutableDictionary]();
-                                let option = NSMutableDictionary();
-                                option["OID"] = result.int(forColumn: "OID")
-                                option["OTITLE"] = result.string(forColumn: "OTITLE")!
-                                optionsDict!.append(option)
+                            let qdict = dict![result.int(forColumn: "QID")]
+                            if qdict == nil{
+                                dict![result.int(forColumn: "QID")] = NSMutableDictionary();
+                                let question = NSMutableDictionary();
+                                question["QID"] = result.int(forColumn: "QID")
+                                question["QTITLE"] = result.string(forColumn: "QTITLE")!
+                                var optionsDict = question["OPTIONS"] as? [NSMutableDictionary];
+                                if optionsDict == nil{
+                                    optionsDict = [NSMutableDictionary]();
+                                    let option = NSMutableDictionary();
+                                    option["OID"] = result.int(forColumn: "OID")
+                                    option["OTITLE"] = result.string(forColumn: "OTITLE")!
+                                    optionsDict!.append(option)
+                                    question["OPTIONS"] = optionsDict;
+                                }
+                                else{
+                                    //                                    dict!["OPTIONS"] = [NSMutableDictionary]();
+                                    optionsDict = question["OPTIONS"] as? [NSMutableDictionary];
+                                    let option = NSMutableDictionary();
+                                    option["OID"] = result.int(forColumn: "OID")
+                                    option["OTITLE"] = result.string(forColumn: "OTITLE")!
+                                    optionsDict!.append(option)
+                                    question["OPTIONS"] = optionsDict;
+                                }
+                                questionsDict!.append(question)
                             }
                             else{
-//                                dict!["OPTIONS"] = [NSMutableDictionary]();
-                                let option = NSMutableDictionary();
-                                option["OID"] = result.int(forColumn: "OID")
-                                option["OTITLE"] = result.string(forColumn: "OTITLE")!
-                                optionsDict!.append(option)
+                                let question = dict![result.int(forColumn: "QID")] as! NSMutableDictionary;
+                                var optionsDict = question["OPTIONS"] as? [NSMutableDictionary];
+                                if optionsDict == nil{
+                                    optionsDict = [NSMutableDictionary]();
+                                    let option = NSMutableDictionary();
+                                    option["OID"] = result.int(forColumn: "OID")
+                                    option["OTITLE"] = result.string(forColumn: "OTITLE")!
+                                    optionsDict!.append(option)
+                                    question["OPTIONS"] = optionsDict;
+                                }
+                                else{
+                                    //                                    dict!["OPTIONS"] = [NSMutableDictionary]();
+                                    optionsDict = question["OPTIONS"] as? [NSMutableDictionary];
+                                    let option = NSMutableDictionary();
+                                    option["OID"] = result.int(forColumn: "OID")
+                                    option["OTITLE"] = result.string(forColumn: "OTITLE")!
+                                    optionsDict!.append(option)
+                                    question["OPTIONS"] = optionsDict;
+                                }
+                                questionsDict!.append(question)
                             }
-                            questionsDict!.append(question)
-                            dict!["QUESTIONS"] = questionsDict;
+                            (dict![result.int(forColumn: "QID")] as! NSMutableDictionary)["QUESTIONS"] = questionsDict;
                         }
                         masterDict[result.int(forColumn: "PID")] = dict;
                     }
                     
                 }
                     
-                
+                var arr = [NSMutableDictionary]()
                 for key in masterDict.keyEnumerator(){
-//                    let a = try JSONSerialization.data(withJSONObject: masterDict[key]!, options: .prettyPrinted);
-                    let jsonData = try JSONSerialization.data(withJSONObject: masterDict[key]!, options: .prettyPrinted)
-                    let decoded = try JSONSerialization.jsonObject(with: jsonData, options: [])
-                    // here "decoded" is of type `Any`, decoded from JSON data
-                    
-                    // you can now cast it with the right type
-                    if let dictFromJSON = decoded as? [String:String] {
-                        print(dictFromJSON)
-                        // use dictFromJSON
-                    }
-                    
-                    
+                    arr.append(masterDict[key] as! NSMutableDictionary)
                 }
-                
-                
-                    
-                
-                    
+               
                     
                     
 //                    let player = PlayerModel(result: result)
@@ -340,5 +439,25 @@ class DBManager: NSObject{
         
         
 //        print(query)
+    }
+    
+    public func ParameterToString(JSON:[String:Any]) -> String{
+        do {
+            let data = try JSONSerialization.data(withJSONObject: JSON, options: .prettyPrinted)
+            return String(data: data, encoding: String.Encoding.utf8)!
+        } catch {
+            print("Unable to convert json to string")
+            return ""
+        }
+    }
+    
+    public func MutableDictionaryArrayToString(dictArray:[NSMutableDictionary]) -> String{
+        do {
+            let data = try JSONSerialization.data(withJSONObject: dictArray, options: .prettyPrinted)
+            return String(data: data, encoding: String.Encoding.utf8)!
+        } catch {
+            print("Unable to convert json to string")
+            return ""
+        }
     }
 }

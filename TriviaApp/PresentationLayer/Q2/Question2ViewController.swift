@@ -50,6 +50,7 @@ class Question2ViewController: UIViewController,UITableViewDataSource, UITableVi
     @IBAction func finishTapped(_ sender: Any) {
         print(player.selectedOptions)
         DBHandler().saveGame(player: player);
+        DBManager.shared.getHistory();
         performSegue(withIdentifier: "unwindToMainScreenSegue", sender: self)
     }
     

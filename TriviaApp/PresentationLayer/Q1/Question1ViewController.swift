@@ -38,8 +38,8 @@ class Question1ViewController: UIViewController,UITableViewDataSource, UITableVi
     }
     
     @IBAction func nextTapped(_ sender: Any) {
-        DBManager.shared.getHistory();
-//       performSegue(withIdentifier: "Q1ToQ2Segue", sender: self)
+//        DBManager.shared.getHistory();
+       performSegue(withIdentifier: "Q1ToQ2Segue", sender: self)
     }
     
     
